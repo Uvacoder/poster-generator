@@ -51,13 +51,22 @@
         <cld-transformation width="1920" quality="auto" />
 
         <cld-transformation
-          v-for="person in people.reverse()"
+          v-for="person in people"
           :key="person.overlay"
           :overlay="person.overlay"
           gravity="north_west"
           width="250"
           y="415"
           :x="person.x"
+        />
+
+        <cld-transformation
+          overlay="uniform-pm-logo"
+          gravity="north_west"
+          width="120"
+          y="551"
+          :x="people[0].x + 200"
+          v-if="data.logo"
         />
 
         <cld-transformation
@@ -109,7 +118,7 @@ export default {
         };
       });
 
-      return result;
+      return result.reverse();
     },
   },
 };
