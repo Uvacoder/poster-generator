@@ -48,32 +48,42 @@
 
     <template v-if="data.template === 'pm'">
       <cld-image publicId="uniform-pm-bg" style="width: 800px">
-        <cld-transformation width="1920" quality="high" />
+        <cld-transformation width="1920" quality="auto" />
+
+        <cld-transformation
+          v-for="person in people.reverse()"
+          :key="person.overlay"
+          :overlay="person.overlay"
+          gravity="north_west"
+          width="250"
+          y="415"
+          :x="person.x"
+        />
 
         <cld-transformation
           :overlay="{
             fontFamily: 'montserrat',
-            fontSize: 40,
-            fontWeight: 'bold',
-            text: encodeURIComponent(data.subtitle),
+            fontSize: 130,
+            fontWeight: 'black',
+            text: encodeURIComponent(data.maintitle),
           }"
           gravity="north_west"
-          y="303"
-          x="328"
-          color="#FBA633"
+          y="684"
+          x="150"
+          color="#ffffff"
           v-if="data.subtitle !== ''"
         />
 
         <cld-transformation
           :overlay="{
             fontFamily: 'montserrat',
-            fontWeight: 'bold',
-            fontSize: 100,
-            text: encodeURIComponent(data.maintitle.toUpperCase()),
+            fontWeight: 'medium',
+            fontSize: 60,
+            text: encodeURIComponent(data.subtitle),
           }"
           gravity="north_west"
-          y="371"
-          x="328"
+          y="862"
+          x="150"
           color="#fff"
           crop="fit"
           width="1400"
@@ -88,6 +98,19 @@ export default {
   name: "GeneratedImg",
   props: {
     data: { type: Object, required: true },
+  },
+
+  computed: {
+    people() {
+      const result = this.data.people.map((person, index) => {
+        return {
+          overlay: person,
+          x: index === 0 ? 150 : 150 + index * 200,
+        };
+      });
+
+      return result;
+    },
   },
 };
 </script>

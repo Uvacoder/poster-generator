@@ -37,11 +37,11 @@
           </div>
         </div>
         <div class="logo-wrap">
-          <img
+          <!-- <img
             width="300"
             src="../assets/tt.png"
             alt="Jamstack Fridays with T&T"
-          />
+          /> -->
         </div>
       </div>
       <div class="template" v-if="template === 'pm'">
@@ -78,24 +78,56 @@
             <label for="lars">
               <input
                 type="checkbox"
-                value="lars"
+                value="uniform-pm-lars"
                 id="lars"
                 v-model="pm.people"
               />
               Lars
             </label>
             <label for="tim">
-              <input type="checkbox" value="tim" id="tim" v-model="pm.people" />
+              <input
+                type="checkbox"
+                value="uniform-pm-tim"
+                id="tim"
+                v-model="pm.people"
+              />
               Tim
             </label>
+            <label for="adam">
+              <input
+                type="checkbox"
+                value="uniform-pm-adaml"
+                id="adam"
+                v-model="pm.people"
+              />
+              Adam L
+            </label>
+            <!-- <label for="kam">
+              <input
+                type="checkbox"
+                value="uniform-pm-kam"
+                id="kam"
+                v-model="pm.people"
+              />
+              Kam
+            </label>
+            <label for="alex">
+              <input
+                type="checkbox"
+                value="uniform-pm-alex"
+                id="alex"
+                v-model="pm.people"
+              />
+              Alex
+            </label> -->
           </div>
         </div>
         <div class="logo-wrap">
-          <img
+          <!-- <img
             width="150"
             src="../assets/uniform-logo.png"
             alt="Jamstack Fridays with T&T"
-          />
+          /> -->
         </div>
       </div>
       <div class="form-item">
