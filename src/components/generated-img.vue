@@ -100,6 +100,71 @@
         />
       </cld-image>
     </template>
+
+    <template v-if="data.template === 'cl'">
+      <cld-image publicId="uniform-cl-bg" style="width: 800px">
+        <cld-transformation width="1920" quality="auto" />
+
+        <cld-transformation
+          :overlay="{
+            fontFamily: 'montserrat',
+            fontSize: 130,
+            fontWeight: 'black',
+            text: encodeURIComponent(data.product),
+          }"
+          gravity="north_west"
+          y="731"
+          x="110"
+          color="#ffffff"
+          v-if="data.product !== ''"
+        />
+
+        <cld-transformation
+          :overlay="{
+            fontFamily: 'montserrat',
+            fontSize: 60,
+            fontWeight: 'medium',
+            text: encodeURIComponent('Product Update'),
+          }"
+          gravity="north_west"
+          y="897"
+          x="110"
+          color="#ffffff"
+          v-if="data.product !== ''"
+        />
+
+        <cld-transformation
+          :overlay="{
+            fontFamily: 'montserrat',
+            fontWeight: 'light',
+            fontSize: 60,
+            text: encodeURIComponent(clDate),
+          }"
+          gravity="north_west"
+          y="897"
+          x="610"
+          color="#fff"
+          v-if="data.date !== ''"
+        />
+
+        <cld-transformation
+          overlay="uniform-cl-logo-uniform"
+          gravity="north_west"
+          width="361"
+          y="179"
+          x="73"
+        />
+
+        <cld-transformation
+          v-if="data.sitecore"
+          overlay="uniform-cl-logo-sitecore"
+          gravity="north_west"
+          width="252"
+          y="335"
+          x="370"
+        />
+      </cld-image>
+    </template>
   </div>
 </template>
 <script>
@@ -119,6 +184,16 @@ export default {
       });
 
       return result.reverse();
+    },
+
+    clDate() {
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+
+      return new Date(this.data.date).toLocaleDateString("en-US", options);
     },
   },
 };

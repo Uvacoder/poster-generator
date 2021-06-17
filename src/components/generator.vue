@@ -1,12 +1,14 @@
 <template>
   <div class="poster-creator">
-    <h1>Poster Generator</h1>
+    <h1>Uniform Poster Generator</h1>
+    <p>Create poster images for different content creation projects.</p>
     <div class="fake-form" v-if="showForm">
       <div class="form-item form-item-template">
         <label for="subtitle">Template</label>
         <select id="template" v-model="template">
           <option value="tt" selected>Jamstack Fridays with T&T</option>
           <option value="pm">Product Meetup</option>
+          <option value="cl">Change log</option>
         </select>
       </div>
       <div class="template" v-if="template === 'tt'">
@@ -37,11 +39,11 @@
           </div>
         </div>
         <div class="logo-wrap">
-          <!-- <img
+          <img
             width="300"
             src="../assets/tt.png"
             alt="Jamstack Fridays with T&T"
-          /> -->
+          />
         </div>
       </div>
       <div class="template" v-if="template === 'pm'">
@@ -123,11 +125,47 @@
           </div>
         </div>
         <div class="logo-wrap">
-          <!-- <img
+          <img
             width="150"
             src="../assets/uniform-logo.png"
-            alt="Jamstack Fridays with T&T"
-          /> -->
+            alt="Uniform Product Meetup"
+          />
+        </div>
+      </div>
+      <div class="template" v-if="template === 'cl'">
+        <div class="form-item-wrap">
+          <h2>Uniform Change Log</h2>
+          <div class="form-item">
+            <label for="product">Product (+ version)</label>
+            <input
+              type="text"
+              id="product"
+              placeholder="Uniform Optimize 8.0.1"
+              v-model="cl.product"
+            />
+          </div>
+          <div class="form-item">
+            <label for="date">Date</label>
+            <input
+              type="date"
+              id="date"
+              placeholder="2021-05-01"
+              v-model="cl.date"
+            />
+          </div>
+          <div class="form-item">
+            <label for="sitecore">
+              <input type="checkbox" id="sitecore" v-model="cl.sitecore" /> Show
+              Sitecore logo
+            </label>
+          </div>
+        </div>
+        <div class="logo-wrap">
+          <img
+            width="150"
+            src="../assets/uniform-logo.png"
+            alt="Uniform Product Meetup"
+          />
         </div>
       </div>
       <div class="form-item">
@@ -163,6 +201,11 @@ export default {
         people: [],
         logo: true,
       },
+      cl: {
+        product: "Uniform Optimize 8.0.1",
+        sitecore: false,
+        date: new Date().toISOString().split("T")[0],
+      },
     };
   },
 
@@ -180,13 +223,16 @@ export default {
 
 <style>
 .poster-creator {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: #1d3557;
-
   max-width: 800px;
-  margin: 5em auto 0;
-  width: 90%;
+  margin: 5em 0 0;
+  padding: 0 2rem;
+}
+
+h1 {
+  font-size: 1.875rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 45px;
 }
 
 .poster-output {
@@ -197,11 +243,13 @@ h2 {
   margin: 0 0 1rem 0;
 }
 
+p {
+  margin: 0 0 1rem 0;
+  color: rgb(111, 117, 130);
+}
+
 .fake-form {
-  border: 1px solid #ddd;
-  padding: 1rem;
-  background: #f1f1f1;
-  border-radius: 0.3rem;
+  margin: 2rem 0 0 0;
 }
 
 .template {
@@ -248,6 +296,7 @@ button {
 }
 
 input[type="text"],
+input[type="date"],
 select {
   border: 1px solid #ddd;
   padding: 1rem;
