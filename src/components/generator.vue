@@ -104,6 +104,15 @@
               />
               Adam L
             </label>
+            <label for="bennich">
+              <input
+                type="checkbox"
+                value="uniform-pm-bennich"
+                id="bennich"
+                v-model="pm.people"
+              />
+              Bennich
+            </label>
             <!-- <label for="kam">
               <input
                 type="checkbox"
